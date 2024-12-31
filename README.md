@@ -38,6 +38,14 @@ You can view the live preview of the project [here](https://eliteapp.tech/).
 ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
+## Screenshots
+![image](https://github.com/user-attachments/assets/22d90380-4be5-43b0-996a-a24eeb9eaf4f)
+![image](https://github.com/user-attachments/assets/1417de7e-cafd-44f6-a591-185fecf6e1c9)
+![image](https://github.com/user-attachments/assets/b2196afa-5428-4395-a78b-f21178646e33)
+![image](https://github.com/user-attachments/assets/75cc4689-7af4-4908-bea0-5da869691764)
+
+
+
 ## ⚙️ Installation
 
 1. **Fork this repository:** Click the Fork button located in the top-right corner of this page to fork the repository.
