@@ -8,7 +8,6 @@
 // app.use(cors());
 
 // // MongoDB Atlas URI (with your credentials)
-// const mongoURI = 'mongodb+srv://itsinstagram69:sangam27@cluster0.mongodb.net/codetogether?retryWrites=true&w=majority';
 
 // mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 //     .then(() => console.log("Connected to MongoDB Atlas"))
