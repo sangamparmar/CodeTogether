@@ -64,67 +64,60 @@ You can view the live preview of the project [here](https://eliteapp.tech/).
 
 ## ⚙️ Installation
 
-1. **Fork this repository**
-   
-   Click the Fork button located in the top-right corner of this page to fork the repository.
-
-2. **Clone the repository**
-   ```bash
-   git clone https://github.com/<your-username>/CodeTogether.git
-   ```
-
-3. **Set environment variables**
-   
+1. **Fork this repository:** Click the Fork button located in the top-right corner of this page to fork the repository.
+2. **Clone the repository:**
+    ```bash
+    git clone https://github.com/<your-username>/CodeTogether.git
+    ```
+3. **Set .env file:**
    Inside the client and server directories rename the `.env.example` file to `.env` and set the following environment variables:
 
-   **Frontend (`client/.env`):**
-   \`\`\`bash
-   VITE_BACKEND_URL=<your_server_url>
-   \`\`\`
-   
-   **Backend (`server/.env`):**
-   \`\`\`bash
-   PORT=3000
-   MONGO_URI=<your_mongodb_connection_string>
-   \`\`\`
+    **Frontend (`client/.env`):**
+    ```bash
+    VITE_BACKEND_URL=<your_server_url>
+    ```
+    
+    **Backend (`server/.env`):**
+    ```bash
+    PORT=3000
+    MONGO_URI=
+    ```
 
-4. **Install dependencies**
-   \`\`\`bash
-   # Install frontend dependencies
-   cd client
-   npm install
+4. **Install dependencies:**
+    ```bash
+    # Install frontend dependencies
+    cd client
+    npm install
 
-   # Install backend dependencies
-   cd ../server
-   npm install
-   \`\`\`
+    # Install backend dependencies
+    cd ../server
+    npm install
+    ```
+5. **Start the frontend and backend servers:**
+    ```bash
+    # Start frontend
+    cd client
+    npm run dev
 
-5. **Start the frontend and backend servers**
-   \`\`\`bash
-   # Start frontend
-   cd client
-   npm run dev
+    # Start backend
+    cd ../server
+    npm run dev
+    ```
+6. **Run Tests:**
+    ```bash
+    # Run frontend tests
+    cd client
+    npm test
 
-   # Start backend
-   cd ../server
-   npm run dev
-   \`\`\`
+    # Run backend tests
+    cd ../server
+    npm test
+    ```
+7. **Access the application:**
+    ```bash
+    http://localhost:5173/
+    ```
 
-6. **Run tests**
-   \`\`\`bash
-   # Run frontend tests
-   cd client
-   npm test
-
-   # Run backend tests
-   cd ../server
-   npm test
-   \`\`\`
-
-7. **Access the application**
-   \`\`\`
-   http://localhost:5173/
-   \`\`\`
 
 ## 🤝 Contributing
 
