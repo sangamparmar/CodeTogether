@@ -69,9 +69,9 @@ You can view the live preview of the project [here](https://eliteapp.tech/).
    Click the Fork button located in the top-right corner of this page to fork the repository.
 
 2. **Clone the repository**
-   \`\`\`bash
+   ```bash
    git clone https://github.com/<your-username>/CodeTogether.git
-   \`\`\`
+   ```
 
 3. **Set environment variables**
    
