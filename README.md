@@ -15,6 +15,8 @@
 ## 📋 Overview
 
 CodeTogether provides a platform for multiple users to enter a room, share a unique room ID, and collaborate on code simultaneously. With real-time synchronization, comprehensive language support, and integrated communication tools, it creates an ideal environment for pair programming, teaching, and collaborative development.
+![image](https://github.com/user-attachments/assets/5c1c7128-0004-4044-94e3-3121e619ae09)
+
 
 ## 🔮 Key Features
 
@@ -145,4 +147,3 @@ This project is licensed under the [MIT License](LICENSE).
 <div align="center">
   <sub>Built with ❤️ by developers, for developers</sub>
 </div>
-\`\`\`
