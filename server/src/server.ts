@@ -71,13 +71,18 @@ const UserModel = mongoose.model("User", userSchema);
 // Register route
 app.post("/register", async (req: Request, res: Response) => {
   try {
-    const { username, email, password } = req.body;
-
-    // Check if the user already exists
+    const { username, email, password } = req.body;    // Check if the user already exists
     const existingUser = await UserModel.findOne({
       $or: [{ username }, { email }],
     });
-    if (existingUser) {
+    
+    // If user exists but is not verified, delete the old record so they can register again
+    if (existingUser && !existingUser.isVerified) {
+      await UserModel.deleteOne({ _id: existingUser._id });
+      console.log(`Deleted unverified user: ${email} to allow re-registration`);
+    } 
+    // If user exists and is verified, return error
+    else if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
@@ -96,11 +101,9 @@ app.post("/register", async (req: Request, res: Response) => {
       otp,
       otpExpiry,
       isVerified: false,
-    });
-
-    // Save the new user
+    });    // Save the new user
     await newUser.save();
-    console.log(`User registered: ${email} with OTP: ${otp}`);
+    console.log(`User registered: ${email} with OTP: ${otp} (isVerified: false)`);
 
     // Send OTP email
     const emailSent = await sendOTPEmail(email, otp);
@@ -133,29 +136,37 @@ app.post("/verify-otp", async (req: Request, res: Response) => {
   if (!email || !otp) {
     return res.status(400).json({ message: "Email and OTP are required" });
   }
-
   // Find user by email
   const user = await UserModel.findOne({ email });
   if (!user) {
-    return res.status(404).json({ message: "User not found" });
+    console.log(`Verification attempted for non-existent user: ${email}`);
+    return res.status(404).json({ message: "User not found. Please register first." });
+  }
+
+  // Check if user is already verified
+  if (user.isVerified) {
+    console.log(`Already verified user attempting verification again: ${email}`);
+    return res.status(400).json({ message: "Email already verified. Please login instead." });
   }
 
   // Check if OTP matches and is not expired
   const currentTime = new Date();
   if (user.otp !== otp) {
-    return res.status(400).json({ message: "Invalid OTP" });
+    console.log(`Invalid OTP attempt for user: ${email}`);
+    return res.status(400).json({ message: "Invalid OTP. Please check and try again." });
   }
 
   if (user.otpExpiry && user.otpExpiry < currentTime) {
+    console.log(`Expired OTP used for user: ${email}`);
     return res.status(400).json({ message: "OTP has expired. Please request a new one." });
   }
-
   // Mark user as verified
   user.isVerified = true;
   user.otp = undefined;
   user.otpExpiry = undefined;
   await user.save();
-
+  
+  console.log(`User successfully verified: ${email}`);
   res.status(200).json({ message: "Email verified successfully. You can now log in." });
 });
 
@@ -167,16 +178,15 @@ app.post("/resend-otp", async (req: Request, res: Response) => {
   if (!email) {
     return res.status(400).json({ message: "Email is required" });
   }
-
   // Find user by email
   const user = await UserModel.findOne({ email });
   if (!user) {
-    return res.status(404).json({ message: "User not found" });
+    return res.status(404).json({ message: "User not found. Please register first." });
   }
 
   // Check if already verified
   if (user.isVerified) {
-    return res.status(400).json({ message: "Email already verified" });
+    return res.status(400).json({ message: "Email already verified. Please login instead." });
   }
 
   // Generate new OTP
